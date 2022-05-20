@@ -1,3 +1,4 @@
+<?php include ('conexao.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,3 +48,24 @@
 	</div>	
 </body>
 </html>
+<?php
+if($_POST){
+	$sql = 'SELECT * FROM user WHERE 
+			email ="'.$_POST['user'].'" 
+			AND senha ="'.$_POST['senha'].'"';
+	$res = $con->query($sql);
+	if($res->num_rows > 0){
+		//usuário existe
+		$user = $res->fetch_object();
+		$_SESSION['cd'] = $user->cd;
+		$_SESSION['nome'] = $user->nome;
+		$_SESSION['email'] = $user->email;
+		$_SESSION['foto'] = $user->foto;
+		$_SESSION['logado'] = true;
+		vai('home.php');
+	}else{
+		//não existe
+		msg("Usuário e/ou senha Inválidos!");
+	}
+}
+?>

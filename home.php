@@ -1,3 +1,7 @@
+<?php 
+include ('conexao.php'); 
+Proteger();
+?>
 <!DOCTYPE html>
 <html>
 <head>
