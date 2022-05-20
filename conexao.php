@@ -8,6 +8,11 @@ $con = new mysqli($server,$user,$pass,$bd);
 if(!$con){
 	echo "Erro na conexão: ".$con->error;
 }
+function ListarCategorias(){
+	$sql = 'SELECT * FROM categoria ';
+	$res = $GLOBAL['con']->query($sql);
+	return $res;
+}
 function Proteger(){
 	if(!$_SESSION['logado']){
 		vai('index.php');
